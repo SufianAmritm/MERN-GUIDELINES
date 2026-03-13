@@ -1,6 +1,6 @@
 # Project Architecture
 
-A standardized codebase designed for scalability, maintainability, and rapid development. This project enforces strict workflows and architectural patterns to ensure high-quality contributions. This codebase works as a reference directory for MERN stack.
+A standardized codebase designed for scalability, maintainability, and rapid development. This project enforces strict workflows and architectural patterns to ensure high-quality contributions. This codebase works as a reference directory for Tech Nebula MERN stack.
 
 ---
 
@@ -39,6 +39,7 @@ The mandatory lifecycle that every feature, fix, or enhancement must traverse.
 - **Commit/Push Requirements**: Code must pass through local validation, linting, and formatting checks before submission.
 - **Verification**: It is mandatory to hard-verify that every commit or milestone has successfully passed through the specified workflow steps.
 - **Automated Gates**: PRs are evaluated against these standards to prevent regressions or sub-standard code from entering the main branch.
+- **Also**: branch strategy,commit rules,PR requirements,release process,CI checks
 
 ---
 
