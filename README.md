@@ -1,6 +1,6 @@
 # Project Architecture
 
-A standardized codebase designed for scalability, maintainability, and rapid development. This project enforces strict workflows and architectural patterns to ensure high-quality contributions. This codebase works as a reference directory for Tech Nebula MERN stack.
+A standardized codebase designed for scalability, maintainability, and rapid development. This project enforces strict workflows and architectural patterns to ensure high-quality contributions. This codebase works as a reference directory for MERN stack.
 
 ---
 
