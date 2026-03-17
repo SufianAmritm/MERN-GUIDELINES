@@ -4,11 +4,10 @@ import { S3Client } from "@aws-sdk/client-s3";
 import { Injectable } from "@nestjs/common";
 import { v4 as uuidv4 } from "uuid";
 import { configDotenv } from "dotenv";
-import { imageOnly } from "./sample-multer-file-filter.decorator";
+import { imageOnly } from "./dummy-multer-file-filter.decorator";
 configDotenv();
 @Injectable()
 export class S3UploadService {
-  constructor() {}
   /**
    * make sure this file can access env variables
    * @description Returns multer options for S3 upload

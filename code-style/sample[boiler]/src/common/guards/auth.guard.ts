@@ -3,18 +3,18 @@ import {
   ExecutionContext,
   ForbiddenException,
   Injectable,
-} from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
-import { Reflector } from "@nestjs/core";
-import * as jwt from "jsonwebtoken";
-import { Observable } from "rxjs";
-import { APP_ERROR_MESSAGES } from "../constants/errors";
-import { AppContext } from "./interfaces/context";
-import { JwtPayload } from "./interfaces/jwt-payload";
+} from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { Reflector } from '@nestjs/core';
+import * as jwt from 'jsonwebtoken';
+import { Observable } from 'rxjs';
+import { APP_ERROR_MESSAGES } from '../constants/errors';
+import { AppContext } from '../interfaces/context.interface';
+import { JwtPayload } from '../interfaces/jwt-payload.interface';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  private static readonly CONTEXT: string = "context";
+  private static readonly CONTEXT: string = 'context';
 
   constructor(
     private readonly configService: ConfigService,
@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const isPublic = this.reflector.get<boolean>(
-      "isPublic",
+      'isPublic',
       context.getHandler(),
     );
     if (isPublic) {
@@ -35,15 +35,16 @@ export class AuthGuard implements CanActivate {
     return this.verifyJwt(request);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async verifyJwt(req: any) {
     const authorizationToken = req.headers.authorization;
     if (
       !authorizationToken ||
-      authorizationToken.split(" ")?.[0] !== "Bearer"
+      authorizationToken.split(' ')?.[0] !== 'Bearer'
     ) {
       throw new ForbiddenException(APP_ERROR_MESSAGES.NO_TOKEN_PROVIDED);
     }
-    const token = authorizationToken.split(" ")[1];
+    const token = authorizationToken.split(' ')[1];
     if (!token) {
       throw new ForbiddenException(APP_ERROR_MESSAGES.MALFORMED_TOKEN);
     }
@@ -57,7 +58,7 @@ export class AuthGuard implements CanActivate {
     const payload = await new Promise((resolve) => {
       jwt.verify(
         token,
-        this.configService.getOrThrow("JWT_ACCESS_SECRET"),
+        this.configService.getOrThrow('JWT_ACCESS_SECRET'),
         (error, decoded: JwtPayload) => {
           if (error) {
             resolve(error);
